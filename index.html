@@ -1,0 +1,752 @@
+<!DOCTYPE HTML>
+<script src="blockly_compressed.js"></script>
+<script src="blocks_compressed.js"></script>
+<script src="python_compressed.js"></script>
+<script src="msg/js/en.js"></script>
+
+Code:
+<div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+
+<textarea id="textarea-pico"></textarea>
+<br>
+<textarea id="textarea-repl"></textarea>
+<br><br>
+<div id="buttons">
+<button onclick="document.getElementById('textarea-pico').value = 'from machine import Pin,PWM\nimport time\n'+Blockly.Python.workspaceToCode(workspace);">Compile</button>
+<button onclick="window.localStorage.setItem('blockly_code', JSON.stringify(Blockly.serialization.workspaces.save(workspace)))">Save project</button>
+<button onclick="Blockly.serialization.workspaces.load(JSON.parse(window.localStorage.getItem('blockly_code')), workspace)">Load project</button>
+
+<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+  <category name="Logic" colour="#5C81A6">
+    <block type="controls_if"></block>
+    <block type="logic_compare">
+      <field name="OP">EQ</field>
+    </block>
+    <block type="logic_operation">
+      <field name="OP">AND</field>
+    </block>
+    <block type="logic_negate"></block>
+    <block type="logic_boolean">
+      <field name="BOOL">TRUE</field>
+    </block>
+    <block type="logic_null"></block>
+    <block type="logic_ternary"></block>
+  </category>
+  <category name="Loops" colour="#5CA65C">
+    <block type="controls_repeat_ext">
+      <value name="TIMES">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="sleep"></block>
+    <block type="controls_whileUntil">
+      <field name="MODE">WHILE</field>
+    </block>
+    <block type="controls_for">
+      <field name="VAR" id="w,m,[f{,h(Uq3U4g?tFm" variabletype="">i</field>
+      <value name="FROM">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="TO">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <value name="BY">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="controls_forEach">
+      <field name="VAR" id="/rrwo;%Nf0*Y+C|Y04if" variabletype="">j</field>
+    </block>
+    <block type="controls_flow_statements">
+      <field name="FLOW">BREAK</field>
+    </block>
+  </category>
+  <category name="Math" colour="#5C68A6">
+    <block type="math_round">
+      <field name="OP">ROUND</field>
+      <value name="NUM">
+        <shadow type="math_number">
+          <field name="NUM">3.1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_number">
+      <field name="NUM">0</field>
+    </block>
+    <block type="math_single">
+      <field name="OP">ROOT</field>
+      <value name="NUM">
+        <shadow type="math_number">
+          <field name="NUM">9</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_trig">
+      <field name="OP">SIN</field>
+      <value name="NUM">
+        <shadow type="math_number">
+          <field name="NUM">45</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_constant">
+      <field name="CONSTANT">PI</field>
+    </block>
+    <block type="math_number_property">
+      <mutation divisor_input="false"></mutation>
+      <field name="PROPERTY">EVEN</field>
+      <value name="NUMBER_TO_CHECK">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_arithmetic">
+      <field name="OP">ADD</field>
+      <value name="A">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="B">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_on_list">
+      <mutation op="SUM"></mutation>
+      <field name="OP">SUM</field>
+    </block>
+    <block type="math_modulo">
+      <value name="DIVIDEND">
+        <shadow type="math_number">
+          <field name="NUM">64</field>
+        </shadow>
+      </value>
+      <value name="DIVISOR">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_constrain">
+      <value name="VALUE">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="LOW">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="HIGH">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_random_int">
+      <value name="FROM">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="TO">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_random_float"></block>
+  </category>
+  <category name="Text" colour="#5CA68D">
+    <block type="text_charAt">
+      <mutation at="true"></mutation>
+      <field name="WHERE">FROM_START</field>
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR" id="|lx_2;f)EoF-b1-*@gu{" variabletype="">text</field>
+        </block>
+      </value>
+    </block>
+    <block type="text">
+      <field name="TEXT"></field>
+    </block>
+    <block type="text_append">
+      <field name="VAR" id="xw3mRuA|SsM|r51Yd;[g" variabletype="">item</field>
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_length">
+      <value name="VALUE">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_isEmpty">
+      <value name="VALUE">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_indexOf">
+      <field name="END">FIRST</field>
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR" id="|lx_2;f)EoF-b1-*@gu{" variabletype="">text</field>
+        </block>
+      </value>
+      <value name="FIND">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_join">
+      <mutation items="2"></mutation>
+    </block>
+    <block type="text_getSubstring">
+      <mutation at1="true" at2="true"></mutation>
+      <field name="WHERE1">FROM_START</field>
+      <field name="WHERE2">FROM_START</field>
+      <value name="STRING">
+        <block type="variables_get">
+          <field name="VAR" id="|lx_2;f)EoF-b1-*@gu{" variabletype="">text</field>
+        </block>
+      </value>
+    </block>
+    <block type="text_changeCase">
+      <field name="CASE">UPPERCASE</field>
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_trim">
+      <field name="MODE">BOTH</field>
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_print">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_prompt_ext">
+      <mutation type="TEXT"></mutation>
+      <field name="TYPE">TEXT</field>
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <sep></sep>
+  <category name="Lists" colour="#745CA6">
+    <block type="lists_indexOf">
+      <field name="END">FIRST</field>
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR" id="0}V}Ecc(-jYmf?jO0#/r" variabletype="">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_create_with">
+      <mutation items="0"></mutation>
+    </block>
+    <block type="lists_repeat">
+      <value name="NUM">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="lists_length"></block>
+    <block type="lists_isEmpty"></block>
+    <block type="lists_create_with">
+      <mutation items="3"></mutation>
+    </block>
+    <block type="lists_getIndex">
+      <mutation statement="false" at="true"></mutation>
+      <field name="MODE">GET</field>
+      <field name="WHERE">FROM_START</field>
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR" id="0}V}Ecc(-jYmf?jO0#/r" variabletype="">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_setIndex">
+      <mutation at="true"></mutation>
+      <field name="MODE">SET</field>
+      <field name="WHERE">FROM_START</field>
+      <value name="LIST">
+        <block type="variables_get">
+          <field name="VAR" id="0}V}Ecc(-jYmf?jO0#/r" variabletype="">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_getSublist">
+      <mutation at1="true" at2="true"></mutation>
+      <field name="WHERE1">FROM_START</field>
+      <field name="WHERE2">FROM_START</field>
+      <value name="LIST">
+        <block type="variables_get">
+          <field name="VAR" id="0}V}Ecc(-jYmf?jO0#/r" variabletype="">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_split">
+      <mutation mode="SPLIT"></mutation>
+      <field name="MODE">SPLIT</field>
+      <value name="DELIM">
+        <shadow type="text">
+          <field name="TEXT">,</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="lists_sort">
+      <field name="TYPE">NUMERIC</field>
+      <field name="DIRECTION">1</field>
+    </block>
+  </category>
+  <category name="Variables" colour="#A65C81" custom="VARIABLE"></category>
+  <category name="Functions" colour="#995BA5" custom="PROCEDURE"></category>
+  <sep></sep>
+  <category name="GPIO" colour="#5C81A6">
+    <block type="pin_tog"></block>
+    <block type="pin_hi"></block>
+    <block type="pin_lo"></block>
+    <block type="pwm_freq"></block>
+    <block type="pwm_duty"></block>
+    <block type="pwm_stop"></block>
+    <block type="button_get"></block>
+  </category>
+</xml>
+
+<script>
+port = "empty"
+async function test_success() {
+	return 1
+}
+success_promise = 0
+async function test_success2() {
+	success_promise = test_success()
+	await success_promise
+}
+test_success2()
+
+loop_bool = true
+ret_val = 0
+async function check_text_repl(txt,mode) {
+	loop_bool = true
+	txt_check = 0
+	point = 0
+	while (port.readable && loop_bool) {
+		const reader = port.readable.getReader();
+		try {
+			while (loop_bool) {
+				const { value, done } = await reader.read();				
+				if (done) {
+					reader.releaseLock();
+					break;
+				}
+				if (value) {
+					for (i=0;i<value.length;i++) {
+						point++;
+						if (value[i] == txt.charCodeAt(txt_check)) {
+							txt_check++;
+						}
+						if (txt_check == txt.length) {
+							reader.releaseLock();
+							loop_bool = false
+							return 1
+						}
+						if (point > 1000) {
+							reader.releaseLock();
+							loop_bool = false
+							return 0
+						}
+						if (mode == 1 && (value[i] >= 32 || value[i] == 10)) {
+							document.getElementById("textarea-repl").value += String.fromCharCode(value[i])
+						}
+					}
+				}
+				console.log("yes")
+				if (loop_bool == false) {
+					reader.releaseLock();
+					loop_bool = false
+					console.log("stopped reading")
+					return 0
+				}
+			}
+		} catch (error) {
+			console.log(error)
+			alert(error)
+			return 0
+		}
+		try {
+			reader.releaseLock();
+		} catch (error) {
+			console.log(error)		
+		}
+	}
+	return 0
+}
+
+async function upload_code(code) {
+	const filters = [
+		{ usbVendorId: 0x2E8A, usbProductId: 0x0005 },
+	];
+	if (port == "empty") {
+		port = await navigator.serial.requestPort({filters});
+	await port.open({ baudRate: 115200 });
+	}
+	const textEncoder = new TextEncoderStream();
+	const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+
+	const writer = textEncoder.writable.getWriter();
+
+	await writer.write("\x01");
+	console.log("entering raw repl")
+	ret_val = check_text_repl("\r\nraw REPL; CTRL-B to exit\r\n>",0);
+	await ret_val
+	if (ret_val == 0) {
+		alert("Error: can't enter raw REPL :(")
+		console.log("Error: can't enter raw REPL :(")
+		return 0
+	}
+	await writer.write("\x05A\x01");
+	console.log("entering raw paste mode")
+	ret_val = check_text_repl("R\x01\x80\x00\x01",0);	
+	await ret_val
+	if (ret_val == 0) {
+		alert("Error: can't enter raw-paste mode :(")
+		console.log("Error: can't enter raw-paste mode :(")
+	}
+	await writer.write(code+"\x04");
+	console.log("entering code")
+	ret_val = check_text_repl("\x04",0);
+	await ret_val
+	if (ret_val == 0) {
+		alert("Error: can't send code to Pico")
+		console.log("Error: can't send code to Pico")
+	}
+	console.log("running code")
+	document.getElementById("textarea-repl").value = ""
+	ret_val = check_text_repl("\x04\x04",1);
+	await ret_val
+	if (ret_val == 0) {
+		alert("Error: can't get code output from Pico")
+		console.log("Error: can't get code output from Pico")				
+	}
+	await writer.write("\x02");
+	console.log("exiting raw mode")
+	ret_val = check_text_repl(">>>",0);
+	await ret_val
+	if (ret_val == 0) {
+		alert("Error: can't exit from raw mode")
+		console.log("Error: can't exit from raw mode")				
+	}
+	/*
+	loop_bool = true
+	while (port.readable && loop_bool) {
+		const reader = port.readable.getReader();
+		try {
+			while (loop_bool) {
+				const { value, done } = await reader.read();
+				if (done) {
+					reader.releaseLock();
+					break;
+				}
+				if (value) {
+					for (i=0;i<value.length-1;i++) {
+						if ((value[i]==4) && (value[i+1]==4)) {
+							reader.releaseLock();
+							loop_bool = false
+							break;
+						}
+					}
+					for (i in value) {
+						console.log(value[i])
+						document.getElementById("textarea-repl").value += String.fromCharCode(value[i])
+					}
+				}
+			}
+		} catch (error) {
+			console.log(error)
+			alert(error)
+		}
+	}
+	*/
+	/*
+	console.log("canceling reader")
+	reader.cancel();
+	console.log("cancelled reader")
+	await readableStreamClosed.catch(() => { });
+	*/
+	console.log("closing writer")
+	writer.close();
+	console.log("closed writer")
+	await writableStreamClosed;	
+}
+
+async function reset_code() {
+	/*
+	const textEncoder = new TextEncoderStream();
+	const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+
+	const writer = textEncoder.writable.getWriter();
+
+	await writer.write("\x01");
+	console.log("soft-resetting micropython")
+	
+	console.log("closing writer")
+	writer.close();
+	console.log("closed writer")
+	await writableStreamClosed;	
+	*/
+	
+	console.log("closing port")
+	await port.close();
+	console.log("closed port")
+	console.log("forgetting port")
+	await port.forget();
+	console.log("forgot port")
+	port = "empty"
+}
+
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function reset_system() {
+	loop_bool = false
+	await sleep(500)
+	ret_val = success_promise
+	await sleep(250)
+	ret_val = success_promise
+	await sleep(250)
+	const textEncoder = new TextEncoderStream();
+	const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+
+	const writer = textEncoder.writable.getWriter();
+	await writer.write("\x03");
+	console.log("stopping code")
+	ret_val = await check_text_repl("\x04\x04",0);
+	console.log("stopped code")
+	if (ret_val == 0) {
+		alert("Error: can't exit from raw mode")
+		console.log("Error: can't exit from raw mode")				
+	}
+	
+	await writer.write("\x02");
+	console.log("exiting raw mode")
+	ret_val = await check_text_repl(">>>",0);
+	console.log("exited raw mode")
+	if (ret_val == 0) {
+		alert("Error: can't exit from raw mode")
+		console.log("Error: can't exit from raw mode")				
+	}
+	
+	console.log("closing writer")
+	writer.close();
+	console.log("closed writer")
+	await writableStreamClosed;	
+}
+
+Blockly.Blocks['pin_tog'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("toggle pin")
+        .appendField(new Blockly.FieldVariable("led"), "pin_in");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(195);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['pin_hi'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("set pin high")
+        .appendField(new Blockly.FieldVariable("led"), "pin_in");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(195);
+ this.setTooltip("Sets an output pin high.");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['pin_lo'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("set pin low")
+        .appendField(new Blockly.FieldVariable("led"), "pin_in");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(195);
+ this.setTooltip("Sets an output pin low.");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['sleep'] = {
+  init: function() {
+    this.appendValueInput("sleep_in")
+        .setCheck("Number")
+        .appendField("sleep");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(120);
+ this.setTooltip("Waits for a number of seconds based on input.");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['pwm_freq'] = {
+  init: function() {
+    this.appendValueInput("pwm_freq")
+        .setCheck("Number")
+        .appendField("set PWM frequency of ")
+        .appendField(new Blockly.FieldVariable("led"), "pin_in")
+        .appendField("to");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(195);
+ this.setTooltip("Sets the PWM frequency of a pin. Example: Servo motors should be clocked at 50Hz.");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['pwm_duty'] = {
+  init: function() {
+    this.appendValueInput("pwm_freq")
+        .setCheck("Number")
+        .appendField("set PWM duty cycle of ")
+        .appendField(new Blockly.FieldVariable("led"), "pin_in")
+        .appendField("to");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(195);
+ this.setTooltip("Sets the duty cycle of an input pin based on nanoseconds.");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['pwm_stop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("stop PWM")
+        .appendField(new Blockly.FieldVariable("led"), "pin_in");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(195);
+ this.setTooltip("stops PWM output");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['button_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("get button input")
+        .appendField(new Blockly.FieldVariable("button"), "button_in");
+    this.setOutput(true, null);
+    this.setColour(195);
+ this.setTooltip("Gets a value from any input that uses only one pin.");
+ this.setHelpUrl("");
+  }
+};
+
+
+Blockly.Python['pin_tog'] = function(block) {
+  var pin = Blockly.Python.nameDB_.getName(block.getFieldValue('pin_in'), Blockly.Names.NameType.VARIABLE)
+  var code = "Pin("+pin+",Pin.OUT).toggle()\n"
+  return code;
+};
+
+Blockly.Python['pin_hi'] = function(block) {
+  var pin = Blockly.Python.nameDB_.getName(block.getFieldValue('pin_in'), Blockly.Names.NameType.VARIABLE)
+  var code = "Pin("+pin+",Pin.OUT).high()\n"
+  return code;
+};
+
+Blockly.Python['pin_lo'] = function(block) {
+  var pin = Blockly.Python.nameDB_.getName(block.getFieldValue('pin_in'), Blockly.Names.NameType.VARIABLE)
+  var code = "Pin("+pin+",Pin.OUT).low()\n"
+  return code;
+};
+
+Blockly.Python['sleep'] = function(block) {
+  var pin = Blockly.Python.valueToCode(block, 'sleep_in', Blockly.Python.ORDER_FUNCTION_CALL) || '0'
+  var code = "time.sleep("+pin+")\n"
+  return code;
+};
+
+Blockly.Python['pwm_freq'] = function(block) {
+  var freq = Blockly.Python.valueToCode(block, 'pwm_freq', Blockly.Python.ORDER_FUNCTION_CALL) || '0'
+  var pin = Blockly.Python.nameDB_.getName(block.getFieldValue('pin_in'), Blockly.Names.NameType.VARIABLE)
+  var code = "PWM(Pin("+pin+")).freq("+freq+")\n"
+  return code;
+};
+
+Blockly.Python['pwm_duty'] = function(block) {
+  var freq = Blockly.Python.valueToCode(block, 'pwm_freq', Blockly.Python.ORDER_FUNCTION_CALL) || '0'
+  var pin = Blockly.Python.nameDB_.getName(block.getFieldValue('pin_in'), Blockly.Names.NameType.VARIABLE)
+  var code = "PWM(Pin("+pin+")).duty_ns("+freq+")\n"
+  return code;
+};
+
+Blockly.Python['pwm_stop'] = function(block) {
+  var pin = Blockly.Python.nameDB_.getName(block.getFieldValue('pin_in'), Blockly.Names.NameType.VARIABLE)
+  var code = "PWM.deinit(PWM(Pin("+pin+")))\n"
+  return code;
+};
+
+Blockly.Python['button_get'] = function(block) {
+  var pin = Blockly.Python.nameDB_.getName(block.getFieldValue('button_in'), Blockly.Names.NameType.VARIABLE)
+  var code = "Pin("+pin+", Pin.IN, Pin.PULL_DOWN).value()"
+  return [code, Blockly.Python.ORDER_FUNCTION_CALL];
+};
+
+if ("serial" in navigator) {
+    buttons = document.getElementById("buttons");
+	buttons.innerHTML += `<button onclick='upload_code(document.getElementById("textarea-pico").value)'>Upload Code to Pico</button>`;
+	buttons.innerHTML += `<button onclick='reset_code()'>Reset Port</button>`;
+	buttons.innerHTML += `<button onclick='reset_system()'>Stop Code</button>`;
+} else {
+	document.write("<p>Sorry, this web browser doesn't support the Web Serial API<br>You can still look at the compiled MicroPython code if you want to though ;)</p>")
+}
+</script>
+
+<script>
+var workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
+</script>
+
+</div>
